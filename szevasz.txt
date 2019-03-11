@@ -1,0 +1,22 @@
+# download a repository on GitHub.com to our machine
+git clone https://github.com/me/repo.git
+cd repo
+# create a new branch to store any new changes
+git branch my-branch
+# switch to that branch (line of development)
+git checkout my-branch
+git add file1.md file2.md
+git commit -m "my snapshot"
+git push --set-upstream origin my-branch
+
+##ez amikor már megvan a repo a gépünkön, és abba akarunk pusholni
+# assumption: a project called `repo` already exists on the machine, and a new branch has been pushed to GitHub.com since the last time changes were made locally
+cd repo
+# update all remote tracking branches, and the currently checked out branch
+git pull
+# change into the existing branch called `feature-a`
+git checkout feature-a
+git add file1.md
+# take a snapshot of the staging area
+git commit -m "edit file1"
+git push
