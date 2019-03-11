@@ -1,2 +1,2 @@
 # losjuanos
-The official server of the Budapest based Los Juanos Gang.
+The official webpage of the Budapest based Los Juanos Gang.
