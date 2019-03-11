@@ -1,0 +1,73 @@
+ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color: #191906;
+font-family: uppercut-angle, sans-serif;
+}
+
+li {
+float: left;
+}
+
+li a {
+display: block;
+color: white;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+
+li a:hover {
+background-color: #6D701B;
+}
+
+h1 {
+    margin-left: 4%;
+    font-family: uppercut-angle, sans-serif;
+}
+
+h2 {
+    margin-left: 8%;
+    margin-right: 16%;
+}
+
+h3 {
+    margin-left: 8%;
+    margin-right: 16%;
+}
+
+div {
+    margin-left: 8%;
+    margin-right: 16%;
+}
+
+html {
+    background-color: #b8ecfc;
+    font-family: acumin-sans, sans-serif;
+    color: #191906;
+}
+
+footer {
+    position: relative;
+    top: 100px;
+}
+
+@media only screen and (max-width: 700px) {
+  html {
+    background-color: #6D701B;
+    color: #6D701B;
+    }
+  ul{
+    background-color: #0F0F04;
+  }
+}
+
+/*
+44d3fc kék
+6D701B fos
+B8ECFC light kék
+0F0F04 dark fos
+*/
+
