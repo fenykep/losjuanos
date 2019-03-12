@@ -25,31 +25,66 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "abel";
+/*
+$servername = "fdb14.biz.nf";
+$username = "2033976_abel";
+$password = "1kurvaberci";
+$dbname = "2033976_abel";
+*/
+
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+if (!$conn) {die("Connection failed: " . mysqli_connect_error());}
+else{echo("<h1>Mi kéne ha vóna?</h1>"."<br>");}
 
+$sql = "SELECT * FROM termekek LIMIT 14;";
 
+/*if(mysqli_query($conn, $sql)===TRUE)
+	{
+		echo("done!");
+	}
+*/
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    //ezt majd egy array-jal csináld meg szerintem:
+    /*
+    	$cars = array
+  		(
+  		array("Volvo",22,18),
+  		array("BMW",15,13),
+  		);
+  		echo $cars[0][0];
+  	*/
+    while($row = $result->fetch_assoc()) {
+    	if ($row["szin"]=="" && $row["meret"]=="") {
+    		echo "Terméknév: " . $row["termeknev"]. " - Ár: " . $row["ar"]."<br>";
+    	}
+    	elseif ($row["szin"]=="" && $row["meret"]!="") {
+    		echo "Terméknév: " . $row["termeknev"]. " - Ár: " . $row["ar"]. " - Méret: " . $row["meret"]."<br>";
+    	}
+    	elseif ($row["szin"]!="" && $row["meret"]=="") {
+    		echo "Terméknév: " . $row["termeknev"]. " - Ár: " . $row["ar"]. " - Szín: " . $row["szin"]. "<br>";
+    	}
+    	else{
+    		echo "Terméknév: " . $row["termeknev"]. " - Ár: " . $row["ar"]. " - Szín: " . $row["szin"]. " - Méret: " . $row["meret"]."<br>";	
+    	}
+    	echo "<br>";
+
+        
+    }
+} else {
+    echo "0 results";
 }
-else{echo("connected yeey!");}
 
-$sql = "SELECT * FROM termekek;";
-
-echo $sql;
-if(mysqli_query($conn, $sql)===TRUE){echo("done!");};
-//mysqli_query($conn, $sql);
-//$rownum = mysqli_num_rows($lolo);
-//echo($rownum);
 mysqli_close($conn);
-//mysqli_close();
-//echo "Connected successfully";
 
 ?>
 
-<h1>Mi kéne ha vóna?</h1>
+
 
 </body>
 </html>

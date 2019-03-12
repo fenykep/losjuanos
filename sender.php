@@ -3,7 +3,12 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "abel";
-
+/*
+$servername = "fdb14.biz.nf";
+$username = "2033976_abel";
+$password = "1kurvaberci";
+$dbname = "2033976_abel";
+*/
 
 
 
@@ -34,7 +39,7 @@ else{echo("connected yeey!");}
 //itt küldöm el az sql-nek a form változóit, csak még szarul
 //------------------HUGE MESS!!!-----------------------------
 
-$sql = "INSERT INTO termekek (`id`, `termeknev`, `ar`, `szin`, `meret`) VALUES (NULL, '$_POST[termeknev]', '$_POST[ar]', '$_POST[szin]', '$_POST[meret]');";
+$sql = "INSERT INTO termekek (`id`, `termeknev`, `tag`, `ar`, `szin`, `meret`) VALUES (NULL, '$_POST[termeknev]', '$_POST[tag]', '$_POST[ar]', '$_POST[szin]', '$_POST[meret]');";
 
 $sql2 = "SELECT * FROM termekek;";
 
