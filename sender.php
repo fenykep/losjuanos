@@ -12,13 +12,8 @@ $dbname = "2033976_abel";
 
 // Create connection (with the sql "server?")
 $conn = mysqli_connect($servername, $username, $password, $dbname);
-
 // Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-
-
-}
+if (!$conn) {die("Connection failed: " . mysqli_connect_error());}
 else{echo("connected yeey!");}
 
 //itt küldöm el az sql-nek a form változóit
@@ -32,6 +27,38 @@ for ($i = 0; $i < count($_POST['meret']); $i++) {
 
 }
 
+//ez egy kopipésztelt fileupload function, még kell bele egy resize, és meg kéne csinálnom, hogy a filenamet automatikusan generálja
+
+
+if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0){
+        $allowed = array("png" => "image/png");
+        $filename = $_FILES["photo"]["name"];
+        $filetype = $_FILES["photo"]["type"];
+        $filesize = $_FILES["photo"]["size"];
+    
+        // Verify file extension
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+        if(!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
+    
+        // Verify file size - 5MB maximum
+        $maxsize = 5 * 1024 * 1024;
+        if($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
+
+    
+        // Verify MYME type of the file
+        if($filesize != "png"){ //vagy "image/png
+            // Check whether file exists before uploading it
+            if(file_exists("upload/" . $filename)){
+                echo $filename . " is already exists.";
+            } else{
+                move_uploaded_file($_FILES["photo"]["tmp_name"], "upload/" . $filename);
+                echo "Your file was uploaded successfully.";
+            } 
+        } else{
+            echo "Error: There was a problem uploading your file. Please try again."; 
+        }
+    }
+//itt van a kopipaszta vége
 mysqli_close($conn);
 ?>
 

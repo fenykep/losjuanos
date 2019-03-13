@@ -35,6 +35,7 @@
 			<td><input type="checkbox" name="meret[]" multiple="yes" value="M">M</td>
 			<td><input type="checkbox" name="meret[]" multiple="yes" value="L">L</td>
 			<td><input type="checkbox" name="meret[]" multiple="yes" value="XL">XL</td>
+			<td><input type="file" name="photo" id="fileSelect"></td>
 			<td><input type="submit" value="Send"></td>
 		</tr>
 	</table>
