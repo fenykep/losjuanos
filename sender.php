@@ -21,15 +21,15 @@ echo count($_POST['meret']) ;
 print_r($_POST['meret']); 
 for ($i = 0; $i < count($_POST['meret']); $i++) {
 	$nagysag = $_POST['meret'][$i];
-    $sql = "INSERT INTO termekek (`id`, `termeknev`, `tag`, `ar`, `szin`, `meret`) VALUES (NULL, '$_POST[termeknev]', '$_POST[tag]', '$_POST[ar]', '$_POST[szin]', '$nagysag');";
+    $sql = "INSERT INTO termekek (`id`, `termeknev`, `tag`, `ar`, `szin`, `meret`, `kep`) VALUES (NULL, '$_POST[termeknev]', '$_POST[tag]', '$_POST[ar]', '$_POST[szin]', '$nagysag', '$kephely');";
     echo "<br>".$sql."<br>";
     if(mysqli_query($conn, $sql)===TRUE){echo("done!". $i);};
 
 }
 
 //ez egy kopipésztelt fileupload function, még kell bele egy resize, és meg kéne csinálnom, hogy a filenamet automatikusan generálja
-
-
+//felrakod a képet, ad neki egy új nevet (termeknev.tag.szin.png), ezt az elérést felrakja az sql szerverre, és bedobja a képet az img mappába
+/*
 if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0){
         $allowed = array("png" => "image/png");
         $filename = $_FILES["photo"]["name"];
@@ -46,7 +46,7 @@ if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0){
 
     
         // Verify MYME type of the file
-        if($filesize != "png"){ //vagy "image/png
+        if($filesize == "png"){ //vagy "image/png
             // Check whether file exists before uploading it
             if(file_exists("upload/" . $filename)){
                 echo $filename . " is already exists.";
@@ -58,6 +58,7 @@ if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0){
             echo "Error: There was a problem uploading your file. Please try again."; 
         }
     }
+*/
 //itt van a kopipaszta vége
 mysqli_close($conn);
 ?>
