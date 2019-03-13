@@ -17,6 +17,8 @@ if (!$conn) {die("Connection failed: " . mysqli_connect_error());}
 else{echo("connected yeey!");}
 
 //itt küldöm el az sql-nek a form változóit
+//$kephely = $_POST[termeknev]+$_POST[tag]+$_POST[szin]+".png"
+$kephely = "alma.png"
 echo count($_POST['meret']) ;
 print_r($_POST['meret']); 
 for ($i = 0; $i < count($_POST['meret']); $i++) {
@@ -26,7 +28,7 @@ for ($i = 0; $i < count($_POST['meret']); $i++) {
     if(mysqli_query($conn, $sql)===TRUE){echo("done!". $i);};
 
 }
-
+echo "<br><h3>A kép neve ez lesz:</h3>".$kephely;
 //ez egy kopipésztelt fileupload function, még kell bele egy resize, és meg kéne csinálnom, hogy a filenamet automatikusan generálja
 //felrakod a képet, ad neki egy új nevet (termeknev.tag.szin.png), ezt az elérést felrakja az sql szerverre, és bedobja a képet az img mappába
 /*
