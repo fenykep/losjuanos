@@ -1,4 +1,4 @@
-# this starts the local server if you have xampp installed
+# this starts the local server if you have XAMPP installed
 sudo /opt/lampp/lampp start
 
 # download a repository on GitHub.com to our machine
