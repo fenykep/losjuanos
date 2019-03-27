@@ -8,6 +8,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -45,15 +46,8 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {die("Connection failed: " . mysqli_connect_error());}
 else{/*echo("<h1>Mi kéne ha vóna?</h1>"."<br>");*/}
 
-$sql = "SELECT * FROM termekek LIMIT 14;";
-
-/*if(mysqli_query($conn, $sql)===TRUE)
-	{
-		echo("done!");
-	}
-*/
+$sql = "SELECT * FROM termekek LIMIT 15;";
 $result = $conn->query($sql);
-
 if ($result->num_rows > 0) {
     // output data of each row
     //ezt majd egy array-jal csináld meg szerintem:
@@ -122,7 +116,7 @@ if ($result->num_rows > 0) {
       echo '
           <div class="col-md-4">
             <div class="card mb-4 shadow-sm border" style="width: 18rem;">
-              <img src="/www/img/one1.png" class="card-img-top" alt="...">
+              <img src="/www/img/cheese_white.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">' . $row["termeknev"]. '</h5>
                   <p class="card-text">Ide kerül majd a kártya szövege</p>
@@ -166,3 +160,21 @@ mysqli_close($conn);
 </div>
 </body>
 </html>
+
+<!-- Ezzel tudsz képméretet optimalizálni, szerintem a bootstrap ezt nem kezeli
+
+<img
+    srcset="/resize:320w/kep.jpg 320w,
+            /resize:480w/kep.jpg 480w,
+            /resize:960w/kep.jpg 960w"
+
+    sizes="(max-width: 320px) 320px,
+           (max-width: 480px) 480px,
+           960px"
+
+    src="/resize:960w/kep.jpg"
+    alt="ez a szöveg jelenik meg a kép helyett ha arra van szükség/missing file"
+/>
+
+
+ -->
