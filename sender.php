@@ -9,9 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
 <body>
 <?php
 $servername = "localhost";
@@ -32,8 +32,9 @@ if (!$conn) {die("Connection failed: " . mysqli_connect_error());}
 else{echo("connected yeey!");}
 
 //itt küldöm el az sql-nek a form változóit
-//$kephely = $_POST[termeknev]+$_POST[tag]+$_POST[szin]+".png"
-$kephely = "alma.png";
+//$kephely = "/www/img/cheese_white.jpg";
+$kephely = str_replace('-', '_', preg_replace('/\s+/', '', strtolower(transliterator_transliterate('Any-Latin; Latin-ASCII; [\u0080-\u7fff] remove', $_POST['termeknev'].'_'.$_POST['tag'].'_'.$_POST['szin'].".jpg"))));
+
 echo count($_POST['meret']) ;
 print_r($_POST['meret']); 
 for ($i = 0; $i < count($_POST['meret']); $i++) {
@@ -41,9 +42,15 @@ for ($i = 0; $i < count($_POST['meret']); $i++) {
     $sql = "INSERT INTO termekek (`id`, `termeknev`, `tag`, `ar`, `szin`, `meret`, `kep`) VALUES (NULL, '$_POST[termeknev]', '$_POST[tag]', '$_POST[ar]', '$_POST[szin]', '$nagysag', '$kephely');";
     echo "<br>".$sql."<br>";
     if(mysqli_query($conn, $sql)===TRUE){echo("done!". $i);};
-
 }
 echo "<br><h3>A kép neve ez lesz:</h3>".$kephely;
+
+
+//if they DID upload a file...
+if($_FILES['photo']['name']){
+    if(!$_FILES['photo']['error']){move_uploaded_file($_FILES['photo']['tmp_name'], '/opt/lampp/htdocs/www/img/'.$kephely);}
+}
+
 //ez egy kopipésztelt fileupload function, még kell bele egy resize, és meg kéne csinálnom, hogy a filenamet automatikusan generálja
 //felrakod a képet, ad neki egy új nevet (termeknev.tag.szin.png), ezt az elérést felrakja az sql szerverre, és bedobja a képet az img mappába
 /*

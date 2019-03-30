@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 
 --
 -- Database: `abel`
+CREATE DATABASE abel;
 --
 
 -- --------------------------------------------------------
@@ -34,7 +35,8 @@ CREATE TABLE `termekek` (
   `tag` varchar(40) COLLATE utf8_hungarian_ci DEFAULT '"egyéb"',
   `ar` int(11) NOT NULL DEFAULT '0',
   `szin` varchar(16) COLLATE utf8_hungarian_ci DEFAULT NULL,
-  `meret` varchar(4) COLLATE utf8_hungarian_ci DEFAULT NULL
+  `meret` varchar(4) COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `kep` varchar(60) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
@@ -42,11 +44,7 @@ CREATE TABLE `termekek` (
 --
 
 INSERT INTO `termekek` (`id`, `termeknev`, `tag`, `ar`, `szin`, `meret`) VALUES
-(19, 'Los Juanos - Giri', 'PÃ³lÃ³', 3000, 'Fekete', 'S'),
-(20, 'Los Juanos - Giri', 'PÃ³lÃ³', 3000, 'FehÃ©r', 'S'),
-(22, 'Carbon & Monoxide - Volvo', 'PÃ³lÃ³', 4500, 'FehÃ©r', 'M'),
-(23, 'Carbon & Monoxide - Volvo', 'PÃ³lÃ³', 4500, 'FehÃ©r', 'S');
-
+(19, 'Los Juanos - Giri', 'PÃ³lÃ³', 3000, 'Fekete', 'S', 'cheese_white.jpg')
 --
 -- Indexes for dumped tables
 --
