@@ -32,8 +32,9 @@ if (!$conn) {die("Connection failed: " . mysqli_connect_error());}
 else{echo("connected yeey!");}
 
 //itt küldöm el az sql-nek a form változóit
-//$kephely = $_POST[termeknev]+$_POST[tag]+$_POST[szin]+".png"
-$kephely = "alma.png";
+//$kephely = "/www/img/cheese_white.jpg";
+$kephely = str_replace('-', '_', preg_replace('/\s+/', '', strtolower(transliterator_transliterate('Any-Latin; Latin-ASCII; [\u0080-\u7fff] remove', $_POST['termeknev'].'_'.$_POST['tag'].'_'.$_POST['szin'].".jpg"))));
+
 echo count($_POST['meret']) ;
 print_r($_POST['meret']); 
 for ($i = 0; $i < count($_POST['meret']); $i++) {
@@ -41,9 +42,15 @@ for ($i = 0; $i < count($_POST['meret']); $i++) {
     $sql = "INSERT INTO termekek (`id`, `termeknev`, `tag`, `ar`, `szin`, `meret`, `kep`) VALUES (NULL, '$_POST[termeknev]', '$_POST[tag]', '$_POST[ar]', '$_POST[szin]', '$nagysag', '$kephely');";
     echo "<br>".$sql."<br>";
     if(mysqli_query($conn, $sql)===TRUE){echo("done!". $i);};
-
 }
 echo "<br><h3>A kép neve ez lesz:</h3>".$kephely;
+
+
+//if they DID upload a file...
+if($_FILES['photo']['name']){
+    if(!$_FILES['photo']['error']){move_uploaded_file($_FILES['photo']['tmp_name'], '/opt/lampp/htdocs/www/img/'.$kephely);}
+}
+
 //ez egy kopipésztelt fileupload function, még kell bele egy resize, és meg kéne csinálnom, hogy a filenamet automatikusan generálja
 //felrakod a képet, ad neki egy új nevet (termeknev.tag.szin.png), ezt az elérést felrakja az sql szerverre, és bedobja a képet az img mappába
 /*
