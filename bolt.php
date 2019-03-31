@@ -28,10 +28,13 @@
 
 
 <?php
+include 'localserver.php';
+/*
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "abel";
+
 /*
 $servername = "fdb14.biz.nf";
 $username = "2033976_abel";

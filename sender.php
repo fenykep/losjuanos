@@ -14,6 +14,8 @@
 </head>
 <body>
 <?php
+include 'localserver.php';
+/*
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -32,7 +34,6 @@ if (!$conn) {die("Connection failed: " . mysqli_connect_error());}
 else{echo("connected yeey!");}
 
 //itt küldöm el az sql-nek a form változóit
-//$kephely = "/www/img/cheese_white.jpg";
 $kephely = str_replace('-', '_', preg_replace('/\s+/', '', strtolower(transliterator_transliterate('Any-Latin; Latin-ASCII; [\u0080-\u7fff] remove', $_POST['termeknev'].'_'.$_POST['tag'].'_'.$_POST['szin'].".jpg"))));
 
 echo count($_POST['meret']) ;
