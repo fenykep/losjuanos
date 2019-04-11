@@ -30,21 +30,22 @@ CREATE DATABASE abel;
 --
 
 CREATE TABLE `termekek` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `termeknev` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
   `tag` varchar(40) COLLATE utf8_hungarian_ci DEFAULT '"egyéb"',
   `ar` int(11) NOT NULL DEFAULT '0',
   `szin` varchar(16) COLLATE utf8_hungarian_ci DEFAULT NULL,
   `meret` varchar(4) COLLATE utf8_hungarian_ci DEFAULT NULL,
   `kep` varchar(60) COLLATE utf8_hungarian_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+) 
+ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
 -- Dumping data for table `termekek`
 --
 
 INSERT INTO `termekek` (`id`, `termeknev`, `tag`, `ar`, `szin`, `meret`) VALUES
-(19, 'Los Juanos - Giri', 'PÃ³lÃ³', 3200, 'Fekete', 'S', 'cheese_white.jpg')
+(0, 'Los Juanos - Giri', 'PÃ³lÃ³', 3200, 'Fekete', 'S', 'cheese_white.jpg')
 --
 -- Indexes for dumped tables
 --
@@ -52,8 +53,6 @@ INSERT INTO `termekek` (`id`, `termeknev`, `tag`, `ar`, `szin`, `meret`) VALUES
 --
 -- Indexes for table `termekek`
 --
-ALTER TABLE `termekek`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -62,9 +61,6 @@ ALTER TABLE `termekek`
 --
 -- AUTO_INCREMENT for table `termekek`
 --
-ALTER TABLE `termekek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
