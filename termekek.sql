@@ -44,7 +44,7 @@ CREATE TABLE `termekek` (
 --
 
 INSERT INTO `termekek` (`id`, `termeknev`, `tag`, `ar`, `szin`, `meret`) VALUES
-(19, 'Los Juanos - Giri', 'PÃ³lÃ³', 3000, 'Fekete', 'S', 'cheese_white.jpg')
+(19, 'Los Juanos - Giri', 'PÃ³lÃ³', 3200, 'Fekete', 'S', 'cheese_white.jpg')
 --
 -- Indexes for dumped tables
 --

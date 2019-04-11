@@ -49,7 +49,7 @@ echo "<br><h3>A kép neve ez lesz:</h3>".$kephely;
 
 //if they DID upload a file...
 if($_FILES['photo']['name']){
-    if(!$_FILES['photo']['error']){move_uploaded_file($_FILES['photo']['tmp_name'], '/opt/lampp/htdocs/www/img/'.$kephely);}
+    if(!$_FILES['photo']['error']){move_uploaded_file($_FILES['photo']['tmp_name'], '/opt/lampp/htdocs/losjuanos/img/'.$kephely);}
 }
 
 //ez egy kopipésztelt fileupload function, még kell bele egy resize, és meg kéne csinálnom, hogy a filenamet automatikusan generálja

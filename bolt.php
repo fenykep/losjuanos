@@ -119,7 +119,7 @@ if ($result->num_rows > 0) {
       echo '
           <div class="col-md-4">
             <div class="card mb-4 shadow-sm border" style="width: 16rem;">
-              <img src="/www/img/'.$row["kep"].'" class="card-img-top" alt="...">
+              <img src="/losjuanos/img/'.$row["kep"].'" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">' . $row["termeknev"]. '</h5>
                   <p class="card-text">Ide kerül majd a kártya szövege</p>
