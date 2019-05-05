@@ -29,14 +29,16 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {die("Connection failed: " . mysqli_connect_error());}
 else{echo("");}
 
-$sql = "SELECT * FROM termekek LIMIT 15;";
+$sql = "SELECT * FROM termekek;";
+//$sql = "SELECT termeknev FROM termekek"
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     //ezt majd egy array-jal csináld meg szerintem:
     /*
-    	$cars = array
+    	$uitems = array
   		(
+        for i
   		array("Volvo",22,18),
   		array("BMW",15,13),
   		);
