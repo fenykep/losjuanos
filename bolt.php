@@ -35,15 +35,31 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     //ezt majd egy array-jal csináld meg szerintem:
-    /*
-    	$uitems = array
-  		(
-        for i
-  		array("Volvo",22,18),
-  		array("BMW",15,13),
-  		);
-  		echo $cars[0][0];
-  	*/
+    $darabitem = $result->num_rows;
+    echo $darabitem."<br>";
+    
+  	$uitems = array();  
+    $colist = array();
+    $imlist = array();
+    while($row = $result->fetch_assoc()) {
+      if (!in_array($row["termeknev"], $uitems)) {
+        array_push($uitems, $row["termeknev"]);
+      }
+    }
+    print_r($uitems);
+    echo"<br>";
+    
+    for ($i=0; $i < count($uitems) ; $i++) { 
+      $sql = "SELECT szin FROM `termekek` WHERE termeknev = '".$uitems[$i]."'";
+      $result = $conn->query($sql);
+      while($row = $result->fetch_assoc()) {
+          array_push($colist, $row["szin"]);
+        }
+      print_r($colist);
+      echo "<br>";
+    }
+		
+  	
 
     echo '
           <div class="container">
