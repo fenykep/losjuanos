@@ -30,7 +30,6 @@ if (!$conn) {die("Connection failed: " . mysqli_connect_error());}
 else{echo("");}
 
 $sql = "SELECT * FROM termekek;";
-//$sql = "SELECT termeknev FROM termekek"
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
@@ -63,9 +62,13 @@ if ($result->num_rows > 0) {
 
     echo '
           <div class="container">
-            <h2>Friss finom kenyér</h2>
+            <h2>Vegyétek, vigyétek</h2>
             <div class="row">
         ';
+    
+    $sql = "SELECT * FROM termekek;";
+    $result = $conn->query($sql);
+
     while($row = $result->fetch_assoc()) {
       echo '
           <div class="col-md-4">
@@ -89,7 +92,7 @@ if ($result->num_rows > 0) {
     	echo ' 
             </ul>
             <div class="card-body">
-              <a href="#" class="card-link">BuyMe</a>
+              <a href="#" class="card-link" data-toggle="modal" data-target="#exampleModal">BuyMe</a>
               <a href="#" class="card-link">KnowMe</a>
             </div>
             </div>
@@ -107,6 +110,37 @@ mysqli_close($conn);
 
 
 </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Na elő a zsetont</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Mennyi kéne?
+        <input id="demo_vertical2" type="text" value="1" name="demo_vertical2">
+        <script>
+          $("input[name='demo_vertical2']").TouchSpin({
+          verticalbuttons: true,
+          verticalupclass: 'glyphicon glyphicon-plus',
+          verticaldownclass: 'glyphicon glyphicon-minus'
+          });
+        </script>
+      </div>
+      <div class="modal-footer">
+        <!--
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        -->
+        <button type="button" class="btn btn-primary">Buy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
 
